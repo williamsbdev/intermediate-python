@@ -34,9 +34,10 @@ class TestFunctions(unittest.TestCase):
         # arguments and returns the sorted keys of those arguments
         # ================================
         def sorted_keys(**kwargs):
-            return map(str, **kwargs)
+            return sorted(kwargs.keys())
         a_dict = {'a':1, 'b':2, '1':'one'}
         # note that we have to pass in a dict with **
+        # ['a', '1', 'b']
         self.assertEqual(sorted_keys(**a_dict), ['1', 'a', 'b'])
         self.assertEqual(sorted_keys(c=3, d=5),['c', 'd'])
 
