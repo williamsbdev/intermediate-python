@@ -9,6 +9,8 @@ class TestIterators(unittest.TestCase):
         # Get an iterator ``an_iter`` for ``a_list`` by calling
         # the ``iter`` function on it
         # ================================
+        a_list = [0,1,2]
+        an_iter = iter(a_list)
         self.assertEqual(next(an_iter), 0)
         self.assertEqual(next(an_iter), 1)
         self.assertEqual(next(an_iter), 2)
@@ -21,7 +23,10 @@ class TestIterators(unittest.TestCase):
         # Store an iterator for ``b_list`` in ``b_iter``.
         # Take 2 items off the iterator by calling ``next()`` on it.
         # ================================
-
+        b_list = [4,3,2]
+        b_iter = iter(b_list)
+        b_iter.next()
+        b_iter.next()
         self.assertEqual(next(b_iter), 2)
         self.assertRaises(StopIteration, next, b_iter)
 
