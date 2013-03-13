@@ -46,7 +46,7 @@ class TestListComprehensions(unittest.TestCase):
         # return results
         # ================================
         def matrix(x, y):
-            return [(x*3, y) for x in xrange(x) for y in xrange(y) if y % 2 == 0]
+            return [(a*3, b) for a in xrange(x) for b in xrange(y) if b % 2 == 0]
 
         self.assertEqual(matrix(3,4), [(0, 0), (0, 2), (3, 0), (3, 2), (6, 0), (6, 2)])
 
