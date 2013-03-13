@@ -7,7 +7,10 @@ class TestClosures(unittest.TestCase):
         #
         # Create a function ``echo_creator`` that returns a function that returns what was passed into it
         # ================================
-
+        def echo_creator():
+            def inner(param):
+                return param
+            return inner
         echo = echo_creator()
         self.assertTrue(isinstance(echo, types.FunctionType))
         self.assertEqual(echo(5), 5)
@@ -18,7 +21,10 @@ class TestClosures(unittest.TestCase):
         # a number and returns a function that multiples its
         # input by that number
         # ================================
-
+        def mult_factory(num):
+            def inner(input_num):
+                return num * input_num
+            return inner
         mult5 = mult_factory(5)
         self.assertTrue(isinstance(mult5, types.FunctionType))
         self.assertEqual(mult5(5), 25)

@@ -15,7 +15,12 @@ class TestDecorators(unittest.TestCase):
         # wrapped function and "after", after
         # invoking it
         # ================================
-
+        def noisy(func):
+            print "before"
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+            print "after"
+            
         @noisy
         def nothing():
             sys.stdout.write('middle\n')

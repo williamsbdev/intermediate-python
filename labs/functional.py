@@ -7,7 +7,7 @@ class TestFunctional(unittest.TestCase):
         # create a lambda statement that adds 2 to its input
         # assign the statement to a variable named ``add_2``
         # ================================
-
+        add_2 = lambda a: a + 2
         self.assertTrue(isinstance(add_2, types.LambdaType))
         self.assertEqual(add_2(4), 6)
 
@@ -15,7 +15,7 @@ class TestFunctional(unittest.TestCase):
         # Create an ``is_odd`` lambda statement,
         # that evaluates to True if the input is odd
         # ================================
-
+        is_odd = lambda a: False if a % 2 == 0 else True
         self.assertTrue(isinstance(is_odd, types.LambdaType))
         self.assertEqual(is_odd(5), True)
         self.assertEqual(is_odd(4), False)
@@ -26,7 +26,8 @@ class TestFunctional(unittest.TestCase):
         # Create a new list ``two_more`` from digits by
         # mapping ``add_2`` to the elements of digits
         # ================================
-
+        digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        two_more = map(add_2, digits)
         self.assertEqual(digits, list(range(0, 10)))
         self.assertEqual(two_more, list(range(2,12)))
 
@@ -35,7 +36,8 @@ class TestFunctional(unittest.TestCase):
         # ``reduce`` with the ``operator.add``
         # function, store the result in ``digit_sum``
         # ================================
-
+        import operator
+        digit_sum = reduce(operator.add, digits)
         self.assertEqual(digit_sum, 45)
 
         # Filter
@@ -43,7 +45,7 @@ class TestFunctional(unittest.TestCase):
         # ``two_more`` list, store results in ``two_odd``.
         # (hint use ``is_odd`` as the predicate function)
         # ================================
-
+        two_odd = filter(is_odd, two_more)
         self.assertEqual(list(two_odd), [3, 5, 7, 9, 11])
 
 

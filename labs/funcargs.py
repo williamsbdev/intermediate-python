@@ -8,7 +8,8 @@ class TestFunctions(unittest.TestCase):
         # arguments ``(*args)`` and returns a list with the
         # arguments in ``reversed`` order.
         # ================================
-
+        def backwards(*args):
+            return list(reversed(args))
         # note that when passing a sequence, we need to flatten with the ``*``
         self.assertEqual(backwards(*[0,1,2]), [2,1,0])
         # no flattening required here
@@ -22,7 +23,8 @@ class TestFunctions(unittest.TestCase):
         # It should call ``func`` with the named parameter and
         # variable args splatted out, and return the results.
         # ================================
-
+        def shove_args(func, named=None, *args):
+            return func(named, *args)
         self.assertEqual(shove_args(backwards, 1, *[0, 2]), [2,0,1])
 
 
@@ -31,7 +33,8 @@ class TestFunctions(unittest.TestCase):
         # Create a function ``sorted_keys`` that accepts only keyword
         # arguments and returns the sorted keys of those arguments
         # ================================
-
+        def sorted_keys(**kwargs):
+            return map(str, **kwargs)
         a_dict = {'a':1, 'b':2, '1':'one'}
         # note that we have to pass in a dict with **
         self.assertEqual(sorted_keys(**a_dict), ['1', 'a', 'b'])

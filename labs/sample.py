@@ -11,7 +11,7 @@ class SampleTest(unittest.TestCase):
         # Create a variable ``name`` that is assigned to the string
         # "Matt".
         # ================================
-
+        name = 'Matt'
         self.assertTrue(isinstance(name, str))
         self.assertEqual(name, 'Matt')
 
