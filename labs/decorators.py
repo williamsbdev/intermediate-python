@@ -16,11 +16,12 @@ class TestDecorators(unittest.TestCase):
         # invoking it
         # ================================
         def noisy(func):
-            print "before"
             def wrapper(*args, **kwargs):
-                return func(*args, **kwargs)
-            print "after"
-            
+                print "before"
+                func(*args, **kwargs)
+                print "after"
+            return wrapper
+
         @noisy
         def nothing():
             sys.stdout.write('middle\n')
@@ -42,6 +43,12 @@ class TestDecorators(unittest.TestCase):
         # updates the wrapped ``__doc__`` and ``__name__``
         # and just calls the function
         # ================================
+        def good_pointless(func):
+            def wrapper(*args, **kwargs):
+                return func(*args, **kwargs)
+            wrapper.__doc__ = func.__doc__
+            wrapper.__name__ = func.__name__
+            return wrapper
 
         @good_pointless
         def nothing2():
@@ -56,7 +63,13 @@ class TestDecorators(unittest.TestCase):
         # number (n) and multiples the result of the
         # function it is wrapping by that number (n).
         # ================================
-
+        def times_n(n):
+            def decorator(func):
+                def wrapper(*args, **kwargs):
+                    result = func(*args, **kwargs)
+                    return n * result
+                return wrapper
+            return decorator
 
         @times_n(3)
         def echo(txt):
