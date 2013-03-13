@@ -8,6 +8,11 @@ class TestGenerators(unittest.TestCase):
         #
         # Implement a generator ``two`` that yields 1 then 2
         # ================================
+        def two():
+            cur = 1
+            while cur < 3:
+                yield cur
+                cur += 1
 
         two_gen = two()
         self.assertTrue(isinstance(two_gen, types.GeneratorType))
@@ -19,6 +24,9 @@ class TestGenerators(unittest.TestCase):
         #
         # Implement a generator ``countdown`` that takes a integer yields the sequence from range(integer, -1, -1)
         # ================================
+        def countdown(num):
+            for x in range(num, -1, -1):
+                yield x
 
         one = countdown(1)
         self.assertTrue(isinstance(one, types.GeneratorType))
